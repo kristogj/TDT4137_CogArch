@@ -5,7 +5,7 @@ class Perceptron:
 
     def __init__(self,num_inputs):
         self.weights = [random() - 0.5 for _ in range(num_inputs)]
-        self.threshold = random() - 0.5
+        self.threshold = 0.2
         self.output = []
         self.learning_rate = 0.1
 
