@@ -19,6 +19,13 @@ class Perceptron:
         """
 
     def one_epoch(self, input, desired_out):
+        """
+        Takes a 2d array with inputslist containing 1's and 0's.
+        The desired_input is for example AND which is [0,0,0,1]
+        :param input: List[List[int]]
+        :param desired_out: List[int]
+        :return: List[int]
+        """
         out = []
         i = 0
         while i < len(input[0]):
@@ -40,6 +47,10 @@ class Perceptron:
 
 
 def step(value):
+    """
+    :param value: float
+    :return: int (1 or 0)
+    """
     return 1 if value >= 0 else 0
 
 
