@@ -18,16 +18,13 @@ class Perceptron:
         self.learning_rate = 0.1
         """
 
-    def step(self,value):
-        return 1 if value >= 0 else 0
-
-    def one_iteration(self, input, desired_out):
+    def one_epoch(self, input, desired_out):
         out = []
         i = 0
         while i < len(input[0]):
             # Calculate output
             temp_out = sum(input[x][i] * self.weights[x] for x in range(len(input))) - self.threshold
-            temp_out = self.step(temp_out)
+            temp_out = step(temp_out)
             out.append(temp_out)
 
             # Update weights
@@ -35,11 +32,15 @@ class Perceptron:
             for y in range(len(input)):
                 delta = self.learning_rate * input[y][i] * error
                 self.weights[y] = self.weights[y] + delta
-
+            print("WEIGHT MID EPOCH: ",self.weights)
             # Check next
             i += 1
         self.output = out
         return out
+
+
+def step(value):
+    return 1 if value >= 0 else 0
 
 
 # Loop testing for several Perceptrons
@@ -55,7 +56,7 @@ for x in range(1000):
     res = []
     counter = 20
     while res != desired_AND and counter != 0:
-        res = p.one_iteration(input, desired_AND)
+        res = p.one_epoch(input, desired_AND)
         print(f"Out: {res}; Weights:{p.weights}; Thresh:{p.threshold}")
         counter -= 1
     if res == desired_AND:
